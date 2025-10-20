@@ -1,0 +1,36 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: mysql-backup
+spec:
+  schedule: "0 2 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: backup
+            image: ghcr.io/oracle/oci-cli:latest
+            env:
+            - name: DB_HOST
+              value: "mysql.default.svc.cluster.local"
+            - name: DB_USER
+              value: "root"
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: laravel-db-secret
+                  key: DB_PASSWORD
+            - name: BUCKET_NAME
+              value: "laravel-backups"
+            command: ["/bin/sh", "-c"]
+            args:
+              - /scripts/backup-upload.sh
+            volumeMounts:
+              - name: scripts
+                mountPath: /scripts
+          restartPolicy: OnFailure
+          volumes:
+            - name: scripts
+              configMap:
+                name: backup-script

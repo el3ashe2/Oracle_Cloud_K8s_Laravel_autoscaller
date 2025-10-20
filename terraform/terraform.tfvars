@@ -1,0 +1,8 @@
+tenancy_ocid           = "ocid1.tenancy.oc1..aaaaaaaaegvb6u3dsf3iqdyzuancx2keko5uo77vaslsoiktxqowozgmqoyq"
+user_ocid              = "ocid1.user.oc1..aaaaaaaayi7vyiqntmqt24qd26t7bfueu7cxwiyc4jwidqyrjd7k3jxcky7q"
+fingerprint            = "a8:9b:54:58:35:83:63:26:33:06:2b:6a:c3:fd:f3:f7"
+private_key_path       = "C:/Users/A7med Bek 3amer/.oci/oci_api_key.pem"
+region                 = "me-riyadh-1"
+compartment_id         = "ocid1.compartment.oc1..aaaaaaaabnmkhmbsse3wrv3smr3k66u46nredpeqmlqx42qfn3mxoul3q6bq"
+ssh_public_key         = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCeJv+JbCiibhJihc+k3FfbVU2iv9XQpogK/Xs1hiPCAoEMSiTEumaJB66l9F+qvyGWlWcBXLTRGwx9lUGdc7njscFyEtwmpIZxq/F9MrSNtRwpT2LiOfBMB8X8N5QK3s0Kv9E6+BKzHQdLzdZnB+agWk4x2Mr/ssCgIsyxhU8jKsOicudVzbehtt+NMIb2ro2Kv4drNH7yiJZA8Cb0c3/xOl7PA2dXD2KEgNBovqZ0ooOey7qDjvVyyYCpoHxeQ7TqWN3VJOc0MVYrJVNSgxDMeWMunTqaYLHUGSuUJgl8jp4+6gxSozrC/eINgE7OfePuRSWnCi8rhPguV+nTVBtLArW5Pg4KJvUJJHqTc/LfanUiUyPkH3L0ED2A0taZDGZrx4OmwzGjY3H1OwRgF/UpSqEI0nw3hKUWLwd7wZa2qgcfkb9l+LFy7VmUif8/SfZcKJrUSbIKEU0qXyQM+PiI4siYVPMeqQWGiZg1hzTtlUWeAcYXh+vH5wfa+1OfdlWNOz5nzRGLZX9fB8uDjHt6KRh2TLRRcl8SYiEnJ/34pnIdW6EhHOgsMlypQm78MtLY1YiSHpTOpAKxoLW02xyfj14VZnyyV7ixUaySW0mGEMWQmXllKlPm6x+HiAdJ7tply5N9PTOR0oGZBbQfr32W2r/LsAiHw09e2hX84rJ6vQ== a7med bek 3amer@El"
+object_storage_namespace = "abdulaziz56"
