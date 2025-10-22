@@ -29,8 +29,7 @@ resource "oci_containerengine_node_pool" "laravel_nodes" {
   }
   node_source_details {
     source_type = "image"
-    image_id    = data.oci_core_images.oracle_linux_latest.id
-  }
+      image_id    = data.oci_core_images.oracle_linux_latest.images[0].id
 }
 # 🔹 Get list of availability domains in your tenancy
 data "oci_identity_availability_domains" "ads" {
