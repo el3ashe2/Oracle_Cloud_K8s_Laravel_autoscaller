@@ -17,4 +17,6 @@ resource "kubernetes_service" "laravel_service" {
 
     type = "LoadBalancer"
   }
+
+  depends_on = [oci_containerengine_node_pool.laravel_nodes]
 }

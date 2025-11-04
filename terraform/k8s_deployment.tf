@@ -40,6 +40,7 @@ resource "kubernetes_deployment" "laravel" {
       }
     }
   }
+  depends_on = [oci_containerengine_node_pool.laravel_nodes]
 }
 # ==============================
 # Autoscaler

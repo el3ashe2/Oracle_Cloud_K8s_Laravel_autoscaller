@@ -8,20 +8,7 @@ data "oci_containerengine_cluster_kube_config" "laravel_kubeconfig" {
 ############################################
 # Kubernetes provider (for OKE)
 ############################################
-provider "kubernetes" {
-  host                   = yamldecode(data.oci_containerengine_cluster_kube_config.laravel_kubeconfig.content)["clusters"][0]["cluster"]["server"]
-  cluster_ca_certificate = base64decode(yamldecode(data.oci_containerengine_cluster_kube_config.laravel_kubeconfig.content)["clusters"][0]["cluster"]["certificate-authority-data"])
-
-  exec {
-    api_version = "client.authentication.k8s.io/v1beta1"
-    command     = "oci"
-    args = [
-      "ce", "cluster", "generate-token",
-      "--cluster-id", oci_containerengine_cluster.laravel_cluster.id,
-      "--region", var.region
-    ]
-  }
-}
+## Removed duplicate default kubernetes provider; using central configuration in k8s-provider.tf
 
 ############################################
 # Helm provider (uses Kubernetes provider)
@@ -47,6 +34,7 @@ provider "helm" {
 # Helm Release for Cluster Autoscaler
 ############################################
 resource "helm_release" "cluster_autoscaler" {
+  count = var.enable_autoscaler ? 1 : 0
   depends_on = [
     oci_containerengine_node_pool.laravel_nodes
   ]

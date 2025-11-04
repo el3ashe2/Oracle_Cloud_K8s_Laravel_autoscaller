@@ -90,6 +90,18 @@ resource "oci_core_subnet" "laravel_subnet" {
   security_list_ids          = [oci_core_security_list.laravel_security_list.id]
 }
 
+# ✅ Worker nodes subnet (separate from service/LB subnet)
+resource "oci_core_subnet" "laravel_nodes_subnet" {
+  compartment_id             = var.compartment_id
+  vcn_id                     = oci_core_virtual_network.laravel_vcn.id
+  cidr_block                 = "10.0.2.0/24"
+  display_name               = "laravel-nodes-subnet"
+  route_table_id             = oci_core_route_table.laravel_rt.id
+  dns_label                  = "nodesub"
+  prohibit_public_ip_on_vnic = false
+  security_list_ids          = [oci_core_security_list.laravel_security_list.id]
+}
+
 # ✅ Private subnet
 resource "oci_core_subnet" "laravel_db_subnet" {
   compartment_id             = var.compartment_id
