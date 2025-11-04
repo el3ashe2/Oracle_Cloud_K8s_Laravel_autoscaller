@@ -2,20 +2,17 @@ terraform {
   required_providers {
     oci = {
       source  = "oracle/oci"
-      version = ">= 7.0.0"
+      version = ">= 7.22.0"
     }
     random = {
       source  = "hashicorp/random"
       version = ">= 3.6.0"
     }
   }
-  required_version = ">= 1.1.0"
+  required_version = ">= 1.5.0"
 }
 
 provider "oci" {
-  tenancy_ocid     = var.tenancy_ocid
-  user_ocid        = var.user_ocid
-  fingerprint      = var.fingerprint
-  private_key_path = var.private_key_path
-  region           = var.region
+  config_file_profile = "DEFAULT"
+  # provider will read ~/.oci/config by default; remove explicit tenancy/user args to avoid schema changes
 }

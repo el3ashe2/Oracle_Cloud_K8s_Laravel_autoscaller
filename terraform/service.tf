@@ -6,7 +6,7 @@ resource "kubernetes_service" "laravel_service" {
 
   spec {
     selector = {
-      app = kubernetes_deployment.laravel.metadata[0].labels.app
+      app = "laravel" #kubernetes_deployment.laravel.metadata[0].labels.app
     }
 
     port {

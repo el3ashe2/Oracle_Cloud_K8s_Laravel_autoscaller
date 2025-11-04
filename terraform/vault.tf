@@ -5,8 +5,8 @@ resource "oci_kms_vault" "laravel_vault" {
 }
 
 resource "oci_kms_key" "laravel_key" {
-  compartment_id = var.compartment_id
-  display_name   = "laravel-key"
+  compartment_id      = var.compartment_id
+  display_name        = "laravel-key"
   management_endpoint = oci_kms_vault.laravel_vault.management_endpoint
   key_shape {
     algorithm = "AES"
@@ -25,7 +25,7 @@ resource "oci_vault_secret" "db_password" {
   key_id         = oci_kms_key.laravel_key.id
   secret_content {
     content_type = "BASE64"
-    content = base64encode(random_password.mysql_admin.result)
+    content      = base64encode(random_password.mysql_admin.result)
   }
   description = "Laravel MySQL admin password"
   secret_name = "laravel-db-password"

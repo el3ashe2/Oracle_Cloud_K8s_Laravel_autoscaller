@@ -23,7 +23,7 @@ resource "kubernetes_deployment" "laravel" {
       spec {
         container {
           name  = "laravel"
-          image = "ghcr.io/yourrepo/laravel:latest"
+          image = "nginx:alpine" # Using nginx as a placeholder - replace with your actual Laravel image
 
           port {
             container_port = 80
@@ -45,7 +45,10 @@ resource "kubernetes_deployment" "laravel" {
   }
 }
 
-# Horizontal Pod Autoscaler
+# ==============================
+# Autoscaler
+# ==============================
+
 resource "kubernetes_horizontal_pod_autoscaler_v2" "laravel_autoscaler" {
   metadata {
     name = "laravel-hpa"
@@ -53,8 +56,8 @@ resource "kubernetes_horizontal_pod_autoscaler_v2" "laravel_autoscaler" {
 
   spec {
     scale_target_ref {
-      kind = "Deployment"
-      name = kubernetes_deployment.laravel.metadata[0].name
+      kind        = "Deployment"
+      name        = kubernetes_deployment.laravel.metadata[0].name
       api_version = "apps/v1"
     }
 
@@ -68,10 +71,12 @@ resource "kubernetes_horizontal_pod_autoscaler_v2" "laravel_autoscaler" {
         name = "cpu"
 
         target {
-          type               = "Utilization"
+          type                = "Utilization"
           average_utilization = 70
         }
       }
     }
   }
+
+  depends_on = [oci_containerengine_node_pool.laravel_nodes]
 }
