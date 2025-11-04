@@ -6,7 +6,7 @@ resource "oci_containerengine_cluster" "laravel_cluster" {
   name               = "laravel-cluster"
   compartment_id     = var.compartment_id
   vcn_id             = oci_core_virtual_network.laravel_vcn.id
-  kubernetes_version = "1.34.1" 
+  kubernetes_version = "v1.34.1" 
   endpoint_config {
     is_public_ip_enabled = true
     subnet_id            = oci_core_subnet.laravel_subnet.id
@@ -102,7 +102,7 @@ resource "oci_containerengine_node_pool" "laravel_nodes" {
   compartment_id     = var.compartment_id
   name               = "laravel-node-pool"
   kubernetes_version = "v1.34.1" #oci_containerengine_cluster.laravel_cluster.kubernetes_version
-  node_shape         = local.effective_node_shape
+  #node_shape         = local.effective_node_shape
 
   node_config_details {
     size = var.node_count
@@ -125,10 +125,17 @@ resource "oci_containerengine_node_pool" "laravel_nodes" {
     memory_in_gbs = var.node_memory_gbs
   }
 
+  #node_source_details {
+   # source_type = "image"
+  #  image_id    = var.node_image_id != "" ? var.node_image_id : local.selected_image_source.image_id
+  #}
+
   node_source_details {
     source_type = "image"
-    image_id    = var.node_image_id != "" ? var.node_image_id : local.selected_image_source.image_id
+    image_id    = "ocid1.image.oc1.me-riyadh-1.aaaaaaaaldhch77khh2q25eyyklzhzjebepe2ggi53poj75oj6up3zre4wvq"
   }
+  node_shape = "VM.Standard.E4.Flex"
+
 
   lifecycle {
     precondition {
