@@ -21,11 +21,11 @@ resource "oci_containerengine_cluster" "laravel_cluster" {
     "Project"     = "Laravel"
   }
 
-  lifecycle {
-    ignore_changes = [
-      kubernetes_version
-    ]
-  }
+#  lifecycle {
+#    ignore_changes = [
+#      kubernetes_version
+#    ]
+#  }
 }
 
 # ==============================
@@ -101,7 +101,7 @@ resource "oci_containerengine_node_pool" "laravel_nodes" {
   cluster_id         = oci_containerengine_cluster.laravel_cluster.id
   compartment_id     = var.compartment_id
   name               = "laravel-node-pool"
-  kubernetes_version = oci_containerengine_cluster.laravel_cluster.kubernetes_version
+  kubernetes_version = "v1.34.1" #oci_containerengine_cluster.laravel_cluster.kubernetes_version
   node_shape         = local.effective_node_shape
 
   node_config_details {
