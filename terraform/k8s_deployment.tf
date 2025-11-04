@@ -23,7 +23,7 @@ resource "kubernetes_deployment" "laravel" {
       spec {
         container {
           name  = "laravel"
-          image = "nginx:alpine" # Using nginx as a placeholder - replace with your actual Laravel image
+          image = "me-riyadh-1.ocir.io/ax45nhirzfe7/guapa:nginx-prod" # Using nginx as a placeholder - replace with your actual Laravel image
 
           port {
             container_port = 80
@@ -80,3 +80,4 @@ resource "kubernetes_horizontal_pod_autoscaler_v2" "laravel_autoscaler" {
 
   depends_on = [oci_containerengine_node_pool.laravel_nodes]
 }
+
