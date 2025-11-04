@@ -6,7 +6,7 @@ resource "oci_containerengine_cluster" "laravel_cluster" {
   name               = "laravel-cluster"
   compartment_id     = var.compartment_id
   vcn_id             = oci_core_virtual_network.laravel_vcn.id
-  kubernetes_version = data.oci_containerengine_cluster_option.cluster_options.kubernetes_versions[0]
+  kubernetes_version = "1.34.1" 
   endpoint_config {
     is_public_ip_enabled = true
     subnet_id            = oci_core_subnet.laravel_subnet.id
